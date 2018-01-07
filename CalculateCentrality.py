@@ -65,7 +65,7 @@ class Centrality():
 
 
 ex=Centrality()
-#file a yazma iþlemi için
+#file a yazma islemi icin
 #sys.stdout = open('selinCentrality.txt', 'w',buffering=0)
 ex.DegreeCentrality()
 ex.BetweennessCentrality()
