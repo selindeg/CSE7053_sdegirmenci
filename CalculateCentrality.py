@@ -69,6 +69,8 @@ class Centrality():
     def drawGraph(self):
         print("GRAPH")
         results = cypher.run("MATCH p= (:User)-[:DOGUMGUNU]->(:User)  RETURN p")
+        #results = cypher.run("MATCH p= (:User)-[:TESEKKUR]->(:User)  RETURN p")
+        #results = cypher.run("MATCH p= (:User)-[:TAKDIR]->(:User)  RETURN p")
         g = results.get_graph()
         nx.draw(g)
 
