@@ -1,6 +1,5 @@
 import cypher
-import sys
-
+import networkx as nx
 
 class Centrality():
     def DegreeCentrality(self):
@@ -52,6 +51,8 @@ class Centrality():
          "UNWIND range(1,10) AS round MATCH (n:User) WHERE rand() < 0.1  MATCH (n:User)-[:DOGUMGUNU*..10]->(m:User) SET m.rank = coalesce(m.rank,0) + 1")
          resultDogumRank = cypher.run("MATCH (n:User) WHERE n.rank is not null return id(n), n.rank order by n.rank desc")
          print(resultDogumRank)
+         #For other relationship pagerank relationship is like below
+         '''
          print("TESEKKUR PAGERANK CENTRALITY")
          resultTesekkur = cypher.run(
          "UNWIND range(1,10) AS round MATCH (n:User) WHERE rand() < 0.1  MATCH (n:User)-[:TESEKKUR*..10]->(m:User) SET m.rank = coalesce(m.rank,0) + 1")
@@ -62,13 +63,22 @@ class Centrality():
          "UNWIND range(1,10) AS round MATCH (n:User) WHERE rand() < 0.1  MATCH (n:User)-[:TAKDIR*..10]->(m:User) SET m.rank = coalesce(m.rank,0) + 1")
          resultTakdirRank = cypher.run("MATCH (n:User) WHERE n.rank is not null return id(n), n.rank order by n.rank desc")
          print(resultTakdir)
+         '''
+
+
+    def drawGraph(self):
+        print("GRAPH")
+        results = cypher.run("MATCH p= (:User)-[:DOGUMGUNU]->(:User)  RETURN p")
+        g = results.get_graph()
+        nx.draw(g)
+
+    
 
 
 ex=Centrality()
-#file a yazma islemi icin
-#sys.stdout = open('selinCentrality.txt', 'w',buffering=0)
 ex.DegreeCentrality()
 ex.BetweennessCentrality()
 ex.ClosenessCentrality()
 ex.EigenVectorCentrality()
-#sys.stdout.close()
+#ex.drawGraph()
+
